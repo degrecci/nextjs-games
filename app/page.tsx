@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import { Games } from "./types";
+import { SearchForm } from "./Form";
 
 export default async function Home() {
   const games = await axiosInstance.get<Games>("/games");
@@ -10,6 +11,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <SearchForm />
       <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 ">
         {results.map((game) => (
           <div key={game.id}>
