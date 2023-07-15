@@ -23,6 +23,7 @@ export default async function Home() {
                   fill
                   className="rounded-md object-cover"
                   alt="Picture of the author"
+                  sizes="width: 100%"
                 />
               </AspectRatio>
             </div>
