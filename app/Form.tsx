@@ -17,9 +17,7 @@ import qs from "qs";
 import * as z from "zod";
 
 const formSchema = z.object({
-  search: z.string().min(2, {
-    message: "Search must be at least 2 characters.",
-  }),
+  search: z.string(),
 });
 
 export const SearchForm = () => {
