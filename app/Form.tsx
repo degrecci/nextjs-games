@@ -11,6 +11,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import qs from "qs";
+
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -26,9 +29,13 @@ export const SearchForm = () => {
       search: "",
     },
   });
+  const router = useRouter();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    const queryParams = qs.stringify(values);
+
+    router.push(`?${queryParams}`);
   }
 
   return (

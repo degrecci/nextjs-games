@@ -4,10 +4,20 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import { Games } from "./types";
 import { SearchForm } from "./Form";
+import qs from "qs";
 
-export default async function Home() {
-  const games = await axiosInstance.get<Games>("/games");
+type HomeProps = {
+  searchParams: { search: string };
+};
+
+export default async function Home({ searchParams }: HomeProps) {
+  const queryParams = qs.stringify(searchParams) ?? "";
+  const games = await axiosInstance.get<Games>(`/games?${queryParams}`);
   const { results } = games.data;
+
+  if (!games) {
+    return <div>No data</div>;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
