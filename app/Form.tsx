@@ -1,5 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
+import * as z from "zod";
+
 import {
   Form,
   FormControl,
@@ -8,13 +10,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import qs from "qs";
+import { usePathname, useRouter } from "next/navigation";
 
-import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import qs from "qs";
+import { useForm } from "react-hook-form";
+import { useTransition } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z.object({
   search: z.string(),
@@ -28,12 +32,16 @@ export const SearchForm = () => {
     },
   });
   const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     const queryParams = qs.stringify(values);
 
-    router.push(`?${queryParams}`);
+    startTransition(() => {
+      return router.replace(`${pathname}?${queryParams}`);
+    });
   }
 
   return (
@@ -47,13 +55,20 @@ export const SearchForm = () => {
               <FormItem>
                 <FormLabel>Search</FormLabel>
                 <FormControl>
-                  <Input placeholder="Search games..." {...field} />
+                  <Input
+                    placeholder="Search games..."
+                    {...field}
+                    disabled={isPending}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isPending}>
+            {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+            Submit
+          </Button>
         </div>
       </form>
     </Form>
