@@ -24,11 +24,15 @@ const formSchema = z.object({
   search: z.string(),
 });
 
-export const SearchForm = () => {
+type FormProps = {
+  searchParams: { search: string };
+};
+
+export const SearchForm = ({ searchParams }: FormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      search: "",
+      search: searchParams?.search || "",
     },
   });
   const router = useRouter();
@@ -46,7 +50,7 @@ export const SearchForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mb-8">
         <div className="flex w-full max-w-sm items-end space-x-2">
           <FormField
             control={form.control}
