@@ -40,7 +40,6 @@ export const SearchForm = ({ searchParams }: FormProps) => {
   const [isPending, startTransition] = useTransition();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const queryParams = qs.stringify(values);
 
     startTransition(() => {
@@ -56,7 +55,7 @@ export const SearchForm = ({ searchParams }: FormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mb-8">
-        <div className="flex w-full max-w-sm items-end space-x-2">
+        <div className="flex w-full max-w-sm items-end space-x-2 columns-1 mb-4">
           <FormField
             control={form.control}
             name="search"
@@ -74,6 +73,8 @@ export const SearchForm = ({ searchParams }: FormProps) => {
               </FormItem>
             )}
           />
+        </div>
+        <div className="space-x-2">
           <Button type="submit" disabled={isPending}>
             {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
             Submit
