@@ -48,6 +48,11 @@ export const SearchForm = ({ searchParams }: FormProps) => {
     });
   }
 
+  function handleClear() {
+    form.reset();
+    router.replace(pathname);
+  }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mb-8">
@@ -72,6 +77,9 @@ export const SearchForm = ({ searchParams }: FormProps) => {
           <Button type="submit" disabled={isPending}>
             {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
             Submit
+          </Button>
+          <Button onClick={handleClear} type="button" variant="secondary">
+            Clear
           </Button>
         </div>
       </form>
