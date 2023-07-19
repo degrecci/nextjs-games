@@ -1,22 +1,27 @@
-"use client";
+import { Games, Result } from "./types";
 
-import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
-import { Result } from "./types";
+import { axiosInstance } from "@/service/axios";
 import placeholderImage from "assets/images/placeholder.png";
 
 type ListProps = {
-  games: Result[];
+  searchParams: { search: string };
 };
 
-export const ListGames = ({ games }: ListProps) => {
-  if (!games.length) {
+export const ListGames = async ({ searchParams }: ListProps) => {
+  const games = await axiosInstance.get<Games>(`/games`, {
+    params: searchParams,
+  });
+  const { results } = games.data;
+
+  if (!results.length) {
     return <div>No data</div>;
   }
 
   return (
     <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 ">
-      {games.map((game) => (
+      {results.map((game) => (
         <div key={game.id}>
           <p className="leading-7 truncate">{game.name}</p>
           {game.background_image ? (
