@@ -7,8 +7,8 @@ export default function Loading() {
       {array.map((_, index) => {
         return (
           <div className="flex items-center flex-col" key={index}>
-            <Skeleton className="h-4 w-[240px] mb-2" />
-            <Skeleton className="h-[130px] w-[240px]" />
+            <Skeleton className="h-4 w-[245px] mb-1" />
+            <Skeleton className="h-[130px] w-full" />
           </div>
         );
       })}
