@@ -1,9 +1,7 @@
-import { Games } from "./types";
 import { ListGames } from "./List";
 import Loading from "./loading";
 import { SearchForm } from "./Form";
 import { Suspense } from "react";
-import { axiosInstance } from "@/service/axios";
 
 type HomeProps = {
   searchParams: { search: string };
