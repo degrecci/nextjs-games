@@ -48,8 +48,8 @@ export const SearchForm = ({ searchParams }: FormProps) => {
   }
 
   function handleClear() {
-    form.reset();
-    router.replace(pathname);
+    form.setValue("search", "");
+    startTransition(() => router.replace(pathname));
   }
 
   return (
