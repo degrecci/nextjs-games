@@ -1,6 +1,6 @@
-import { ListGames } from "./List";
+import { GamesList } from "./games";
 import Loading from "./loading";
-import { SearchForm } from "./Form";
+import { Search } from "./search";
 import { Suspense } from "react";
 
 type HomeProps = {
@@ -10,9 +10,9 @@ type HomeProps = {
 export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-16">
-      <SearchForm searchParams={searchParams} />
+      <Search searchParams={searchParams} />
       <Suspense fallback={<Loading />}>
-        <ListGames searchParams={searchParams} />
+        <GamesList searchParams={searchParams} />
       </Suspense>
     </main>
   );

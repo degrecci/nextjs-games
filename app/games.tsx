@@ -4,11 +4,11 @@ import Image from "next/image";
 import { axiosInstance } from "@/service/axios";
 import placeholderImage from "assets/images/placeholder.png";
 
-type ListProps = {
+type GamesListProps = {
   searchParams: { search: string };
 };
 
-export const ListGames = async ({ searchParams }: ListProps) => {
+export const GamesList = async ({ searchParams }: GamesListProps) => {
   const games = await axiosInstance.get<Games>(`/games`, {
     params: searchParams,
   });

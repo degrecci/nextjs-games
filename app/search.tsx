@@ -28,7 +28,7 @@ type FormProps = {
   searchParams: { search: string };
 };
 
-export const SearchForm = ({ searchParams }: FormProps) => {
+export const Search = ({ searchParams }: FormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
