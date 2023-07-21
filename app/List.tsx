@@ -15,7 +15,7 @@ export const ListGames = async ({ searchParams }: ListProps) => {
   const { results } = games.data;
 
   if (!results.length) {
-    return <div>No data</div>;
+    return <p className="leading-7">No results found in your search</p>;
   }
 
   return (
