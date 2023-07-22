@@ -21,7 +21,7 @@ type GamesListProps = {
 
 export const GamesList = async ({ searchParams }: GamesListProps) => {
   const games = await axiosInstance.get<Games>(`/games`, {
-    params: searchParams,
+    params: { ...searchParams, page_size: 30 },
   });
   const { results } = games.data;
 
@@ -30,7 +30,7 @@ export const GamesList = async ({ searchParams }: GamesListProps) => {
   }
 
   return (
-    <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+    <div className="grid 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
       {results.map((game) => (
         <div key={game.id}>
           <Card>
