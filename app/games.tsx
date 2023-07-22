@@ -1,6 +1,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Games } from "./types";
 import Image from "next/image";
+import Link from "next/link";
 import { axiosInstance } from "@/service/axios";
 import placeholderImage from "assets/images/placeholder.png";
 
@@ -22,7 +23,9 @@ export const GamesList = async ({ searchParams }: GamesListProps) => {
     <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
       {results.map((game) => (
         <div key={game.id}>
-          <p className="leading-7 truncate">{game.name}</p>
+          <Link href={`/game/${game.id}`}>
+            <p className="leading-7 truncate">{game.name}</p>
+          </Link>
           {game.background_image ? (
             <div className="w-full">
               <AspectRatio ratio={16 / 9}>
