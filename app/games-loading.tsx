@@ -9,7 +9,7 @@ import {
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Loading() {
+export default function GamesLoading() {
   const array = new Array(30).fill(0);
   return (
     <div className="grid 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full">
@@ -30,10 +30,6 @@ export default function Loading() {
               <CardContent>
                 <Skeleton className="h-[130px] w-full" />
               </CardContent>
-
-              <CardFooter className="flex justify-end">
-                <Skeleton className="h-[36px] w-[65px]" />
-              </CardFooter>
             </Card>
           </div>
         );
