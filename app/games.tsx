@@ -36,7 +36,7 @@ export const GamesList = async ({ searchParams }: GamesListProps) => {
         {results.map((game) => (
           <div key={game.id}>
             <Link href={`/game/${game.id}`}>
-              <Card className="hover:bg-slate-100">
+              <Card className="hover:bg-accent">
                 <CardHeader>
                   <CardTitle>{game.name}</CardTitle>
                   <CardDescription className="truncate">
