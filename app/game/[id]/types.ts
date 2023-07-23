@@ -7,15 +7,17 @@ type Reactions = {};
 type AddedByStatus = {};
 
 type Platforms = {
-  id: number;
-  name: string; // Required string with 1 to 100 characters
-  slug: string; // Non-empty slug string (^[-a-zA-Z0-9_]+$)
-  games_count: number;
-  image_background: string; // URI formatted string
-  description: string;
-  image: string | null; // Nullable URI formatted string
-  year_start: number | null; // Nullable number in the range [0, 32767]
-  year_end: number | null; // Nullable number in the range [0, 32767]
+  platform: {
+    id: number;
+    name: string; // Required string with 1 to 100 characters
+    slug: string; // Non-empty slug string (^[-a-zA-Z0-9_]+$)
+    games_count: number;
+    image_background: string; // URI formatted string
+    description: string;
+    image: string | null; // Nullable URI formatted string
+    year_start: number | null; // Nullable number in the range [0, 32767]
+    year_end: number | null; // Nullable number in the range [0, 32767]
+  };
 };
 
 export interface GameRead {
@@ -60,5 +62,5 @@ export interface GameRead {
   additions_count: number;
   game_series_count: number;
   esrb_rating: object | null; // Nullable object
-  platforms: Platforms[]; // Array of objects (You may need to define the platform type)
+  platforms: Platforms[] | null; // Array of objects (You may need to define the platform type)
 }

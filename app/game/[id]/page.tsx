@@ -23,7 +23,6 @@ export default async function Page({ params }: { params: { id: string } }) {
         className="leading-7 [&:not(:first-child)]:mt-6"
         dangerouslySetInnerHTML={{ __html: game.description }}
       ></p>
-      {/* <div>{JSON.stringify(game.platforms)}</div> */}
     </div>
   );
 }
