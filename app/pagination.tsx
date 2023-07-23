@@ -4,6 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { PAGE_SIZE } from "@/constants";
 import { SearchParams } from "./page";
 import qs from "qs";
 
@@ -18,11 +19,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 }) => {
   const actualPage = Number(searchParams.page) || 1;
 
-  const pages = Math.ceil(count / 30);
+  const pages = Math.ceil(count / PAGE_SIZE);
   const hasNextPage = actualPage < pages;
   const isFirstPage = actualPage === 1;
-
-  console.log(count);
 
   if (!hasNextPage && isFirstPage) {
     return null;

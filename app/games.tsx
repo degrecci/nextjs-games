@@ -10,6 +10,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Games } from "./types";
 import Image from "next/image";
 import Link from "next/link";
+import { PAGE_SIZE } from "@/constants";
 import { Pagination } from "./pagination";
 import { SearchParams } from "./page";
 import { axiosInstance } from "@/service/axios";
@@ -21,7 +22,7 @@ type GamesListProps = {
 
 export const GamesList = async ({ searchParams }: GamesListProps) => {
   const games = await axiosInstance.get<Games>(`/games`, {
-    params: { ...searchParams, page_size: 30 },
+    params: { ...searchParams, page_size: PAGE_SIZE },
   });
   const { results } = games.data;
 

@@ -7,10 +7,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { PAGE_SIZE } from "@/constants";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function GamesLoading() {
-  const array = new Array(30).fill(0);
+  const array = new Array(PAGE_SIZE).fill(0);
+
   return (
     <div className="grid 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full">
       {array.map((_, index) => {
