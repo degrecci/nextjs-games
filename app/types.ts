@@ -24,7 +24,7 @@ export interface Result {
   suggestions_count: number;
   updated: string;
   esrb_rating: EsrbRating;
-  platforms: Platform[];
+  platforms: Platform[] | null;
 }
 
 interface EsrbRating {
