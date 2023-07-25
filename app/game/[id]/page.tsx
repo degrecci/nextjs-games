@@ -1,6 +1,8 @@
+import { GameRead, ScreenshotsRead } from "./types";
+
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
-import { GameRead } from "./types";
+import { Description } from "./description";
 import Link from "next/link";
 import { axiosInstance } from "@/service/axios";
 
@@ -19,10 +21,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <h1 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
         {game.name}
       </h1>
-      <p
-        className="leading-7 [&:not(:first-child)]:mt-6"
-        dangerouslySetInnerHTML={{ __html: game.description }}
-      ></p>
+      <Description description={game.description} />
     </div>
   );
 }
