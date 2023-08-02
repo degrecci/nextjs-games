@@ -38,6 +38,8 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/qs": "^6.9.7"
+    "@types/qs": "^6.9.7",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1"
   }
 }

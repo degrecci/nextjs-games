@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+
 import { redirect } from "next/navigation";
 
 const API_KEY = process.env.NEXT_PUBLIC_RAWG_KEY;
@@ -20,5 +21,5 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );

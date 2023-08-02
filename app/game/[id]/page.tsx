@@ -1,14 +1,13 @@
-import { GameRead, ScreenshotsRead } from "./types";
-
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { Description } from "./description";
+import { GameRead } from "./types";
 import Link from "next/link";
 import { axiosInstance } from "@/service/axios";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const { data: game } = await axiosInstance.get<GameRead>(
-    `/games/${params.id}`
+    `/games/${params.id}`,
   );
 
   return (
@@ -18,7 +17,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <ChevronLeftIcon className="h-4 w-4" />
         </Button>
       </Link>
-      <h1 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+      <h1 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 mt-10">
         {game.name}
       </h1>
       <Description description={game.description} />
